@@ -43,9 +43,26 @@ How to install:
 **2) Include the `route-styles.js` file to your `index.html` file**
 
 ```html
+<!-- attribute e.g. -->
 <!-- should be added at the end of your body tag -->
 <body>
+	<div ng-app="myApp" zb-route-style>
     ...
+	</div>
+    <script scr="path/to/route-styles.js"></script>
+</body>
+```
+
+
+```html 
+<!-- tag e.g. -->
+<!-- should be added at the end of your body tag -->
+<body>
+	<div ng-app="myApp">
+    	<zb-route-style>
+		...
+		</zb-route-style>
+	</div>
     <script scr="path/to/route-styles.js"></script>
 </body>
 ```
@@ -96,13 +113,13 @@ This config adds a custom css property to the object that is used to setup each 
 ###Custom Head Directive:
 
 ```javascript
-app.directive('head', ['$rootScope','$compile',
+app.directive('zbRouteStyle', ['$rootScope','$compile',
     function($rootScope, $compile){
         return {
-            restrict: 'E',
+            restrict: 'EA',
             link: function(scope, elem){
                 var html = '<link rel="stylesheet" ng-repeat="(routeCtrl, cssUrl) in routeStyles" ng-href="{{cssUrl}}" />';
-                elem.append($compile(html)(scope));
+                angular.element('head').append($compile(html)(scope));
                 scope.routeStyles = {};
                 $rootScope.$on('$routeChangeStart', function (e, next, current) {
                     if(current && current.$$route && current.$$route.css){
