@@ -46,7 +46,7 @@ How to install:
 <!-- attribute e.g. -->
 <!-- should be added at the end of your body tag -->
 <body>
-	<div ng-app="myApp" zb-route-style>
+	<div ng-app="myApp" zb-route-styles>
     ...
 	</div>
     <script scr="path/to/route-styles.js"></script>
@@ -59,9 +59,9 @@ How to install:
 <!-- should be added at the end of your body tag -->
 <body>
 	<div ng-app="myApp">
-    	<zb-route-style>
+    	<zb-route-styles>
 		...
-		</zb-route-style>
+		</zb-route-styles>
 	</div>
     <script scr="path/to/route-styles.js"></script>
 </body>
