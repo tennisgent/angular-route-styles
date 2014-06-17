@@ -59,6 +59,9 @@ angular.module('myApp', ['ngRoute','routeStyles' /* other dependencies here */])
 module available by adding the `angular-route.js` (or `angular-route.min.js`) script
 to your html page.
 
+**NOTE:** this code also requires that your Angular app has access to the `<head>` element.  Typically this
+requires that your `ng-app` directive is on the `<html>` element.  For example: `<html ng-app="myApp">`.
+
 **4) Add your route-specific styles to the `$routeProvider` in your app's config**
 
 ```javascript
