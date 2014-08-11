@@ -41,7 +41,7 @@ How to install:
 **Using bower:**
 > `bower install angular-route-styles`
 
-** OR **
+**OR**
 
 **Using GitHub:**
 > Download or clone this repository
