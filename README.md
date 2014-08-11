@@ -38,9 +38,13 @@ app.config(['$routeProvider', function($routeProvider){
 How to install:
 ---------------
 
-**1) Download or clone this repository**
+**1) Using bower:**
+> `bower install angular-route-styles`
 
-**2) Include the `route-styles.js` file to your `index.html` file**
+**or 1) Using GitHub:**
+> Download or clone this repository
+
+**1) Include the `route-styles.js` file to your `index.html` file**
 
 ```html
 <!-- should be added at the end of your body tag -->
@@ -50,7 +54,7 @@ How to install:
 </body>
 ```
 
-**3) Declare the `'routeStyles'` module as a dependency in your main app**
+**2) Declare the `'routeStyles'` module as a dependency in your main app**
 
 ```javascript
 angular.module('myApp', ['ngRoute','routeStyles' /* other dependencies here */]);
@@ -62,7 +66,7 @@ to your html page.
 **NOTE:** this code also requires that your Angular app has access to the `<head>` element.  Typically this
 requires that your `ng-app` directive is on the `<html>` element.  For example: `<html ng-app="myApp">`.
 
-**4) Add your route-specific styles to the `$routeProvider` in your app's config**
+**3) Add your route-specific styles to the `$routeProvider` in your app's config**
 
 ```javascript
 var app = angular.module('myApp', []);
