@@ -38,10 +38,12 @@ app.config(['$routeProvider', function($routeProvider){
 How to install:
 ---------------
 
-**1) Using bower:**
+**Using bower:**
 > `bower install angular-route-styles`
 
-**or 1) Using GitHub:**
+** OR **
+
+**Using GitHub:**
 > Download or clone this repository
 
 **1) Include the `route-styles.js` file to your `index.html` file**
