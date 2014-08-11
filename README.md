@@ -44,7 +44,7 @@ How to install:
 **OR**
 
 **Using GitHub:**
-> Download or clone this repository
+> git clone https://github.com/tennisgent/angular-route-styles
 
 **1) Include the `route-styles.js` file to your `index.html` file**
 
