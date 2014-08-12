@@ -2,7 +2,7 @@
 
 	angular.module('RouteStylesApp', ['ngRoute'])
 
-		.value('Routes', {
+		.constant('Routes', {
 			route1: '/route-one',
 			route2: '/route-two',
 			route3: '/route-three'
@@ -13,16 +13,19 @@
 			$routeProvider
 				.when(Routes.route1, {
 					controller: 'Route1Ctrl',
-					templateUrl: '/partials/partial1.html'
+					templateUrl: 'partials/partial1.html'
 				})
 				.when(Routes.route2, {
-					controller: 'Route1Ctrl',
-					templateUrl: '/partials/partial1.html'
+					controller: 'Route2Ctrl',
+					templateUrl: 'partials/partial2.html'
 				})
 				.when(Routes.route3, {
-					controller: 'Route1Ctrl',
-					templateUrl: '/partials/partial1.html'
-				});
+					controller: 'Route3Ctrl',
+					templateUrl: 'partials/partial3.html'
+				})
+                .otherwise({
+                    redirectTo: Routes.route1
+                });
 
 		}])
 
