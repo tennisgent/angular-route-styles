@@ -6,7 +6,7 @@
 
 (function(){
 
-    var mod = angular.module('routeStyles', ['ngRoute']);
+    var mod = angular.module('routeStyles', ['ui.router']);
 
     mod.directive('head', ['$rootScope','$compile',
 		function($rootScope, $compile){
