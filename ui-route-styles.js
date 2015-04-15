@@ -17,8 +17,15 @@
 					elem.append($compile(html)(scope));
 					scope.routeStyles = {};
 					$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-						
 						// Remove old styles
+						if (fromState && fromState.css) {
+							if(!Array.isArray(fromState.css)){
+								fromState.css = [fromState.css];
+							}
+							angular.forEach(fromState.css, function(sheet){
+								delete scope.routeStyles[sheet];
+							});
+						}
 						if(fromState && fromState.views){
 							angular.forEach(fromState.views, function(view){
 								if(view.css){
@@ -44,6 +51,14 @@
 									});
 									
 								}
+							});
+						}
+						if (toState && toState.css) {
+							if(!Array.isArray(toState.css)){
+								toState.css = [toState.css];
+							}
+							angular.forEach(toState.css, function(sheet){
+								scope.routeStyles[sheet] = sheet;
 							});
 						}
 					});
