@@ -21,7 +21,7 @@
                                 current.$$route.css = [current.$$route.css];
                             }
                             angular.forEach(current.$$route.css, function(sheet){
-                                delete scope.routeStyles[sheet];
+                                scope.routeStyles[sheet] = undefined;
                             });
                         }
                         if(next && next.$$route && next.$$route.css){

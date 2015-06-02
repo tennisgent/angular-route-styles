@@ -26,7 +26,7 @@
 										view.css = [view.css];
 									}
 									angular.forEach(view.css, function(sheet){
-										delete scope.routeStyles[sheet];
+										scope.routeStyles[sheet] = undefined;
 									});
 								}
 							});
