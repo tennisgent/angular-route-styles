@@ -29,7 +29,9 @@
                                 next.$$route.css = [next.$$route.css];
                             }
                             angular.forEach(next.$$route.css, function(sheet){
-                                if (typeof sheet === 'function') sheet = sheet(next.params);
+                                if (angular.isFunction(sheet)){
+                                    sheet = sheet(next.params);
+                                }
                                 scope.routeStyles[sheet] = sheet;
                             });
                         }
