@@ -3,6 +3,8 @@
  * http://www.zackboman.com or tennisgent@gmail.com
  */
 
+'use strict';
+
 (function(){
 
     var mod = angular.module('routeStyles', ['ngRoute']);
@@ -15,24 +17,23 @@
                     var html = '<link rel="stylesheet" ng-repeat="(routeCtrl, cssUrl) in routeStyles" ng-href="{{cssUrl}}" >';
                     elem.append($compile(html)(scope));
                     scope.routeStyles = {};
-                    $rootScope.$on('$routeChangeStart', function (e, next, current) {
-                        if(current && current.$$route && current.$$route.css){
-                            if(!Array.isArray(current.$$route.css)){
-                                current.$$route.css = [current.$$route.css];
-                            }
-                            angular.forEach(current.$$route.css, function(sheet){
-                                scope.routeStyles[sheet] = undefined;
-                            });
-                        }
+                    $rootScope.$on('$routeChangeStart', function (e, next) {
                         if(next && next.$$route && next.$$route.css){
                             if(!Array.isArray(next.$$route.css)){
                                 next.$$route.css = [next.$$route.css];
                             }
                             angular.forEach(next.$$route.css, function(sheet){
-                                if (angular.isFunction(sheet)){
-                                    sheet = sheet(next.params);
-                                }
                                 scope.routeStyles[sheet] = sheet;
+                            });
+                        }
+                    });
+                    $rootScope.$on('$routeChangeSuccess', function(e, current, previous) {
+                        if (previous && previous.$$route && previous.$$route.css) {
+                            if (!Array.isArray(previous.$$route.css)) {
+                                previous.$$route.css = [previous.$$route.css];
+                            }
+                            angular.forEach(previous.$$route.css, function (sheet) {
+                                scope.routeStyles[sheet] = undefined;
                             });
                         }
                     });
