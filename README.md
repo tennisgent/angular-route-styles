@@ -71,25 +71,25 @@ requires that your `ng-app` directive is on the `<html>` element.  For example: 
 **3) Add your route-specific styles to the `$routeProvider` in your app's config**
 
 ```javascript
-var app = angular.module('myApp', []);
-app.config(['$routeProvider', function($routeProvider){
-    $routeProvider
-        .when('/some/route/1', {
-            templateUrl: 'partials/partial1.html', 
-            controller: 'Partial1Ctrl',
-            css: 'css/partial1.css'
-        })
-        .when('/some/route/2', {
-            templateUrl: 'partials/partial2.html',
-            controller: 'Partial2Ctrl'
-        })
-        .when('/some/route/3', {
-            templateUrl: 'partials/partial3.html',
-            controller: 'Partial3Ctrl',
-            css: ['css/partial3_1.css','css/partial3_2.css']
-        })
-        // more routes can be declared here
-}]);
+angular.module('myApp', ['ngRoute','routeStyles'])
+    .config(['$routeProvider', function($routeProvider){
+        $routeProvider
+            .when('/some/route/1', {
+                templateUrl: 'partials/partial1.html', 
+                controller: 'Partial1Ctrl',
+                css: 'css/partial1.css'
+            })
+            .when('/some/route/2', {
+                templateUrl: 'partials/partial2.html',
+                controller: 'Partial2Ctrl'
+            })
+            .when('/some/route/3', {
+                templateUrl: 'partials/partial3.html',
+                controller: 'Partial3Ctrl',
+                css: ['css/partial3_1.css','css/partial3_2.css']
+            });
+            // more routes can be declared here
+    }]);
 ```
 **Things to notice:**
 * Specifying a css property on the route is completely optional, as it was omitted from the `'/some/route/2'` example. If the route doesn't have a css property, the service will simply do nothing for that route.
