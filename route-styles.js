@@ -19,7 +19,7 @@
                     scope.routeStyles = {};
                     $rootScope.$on('$routeChangeStart', function (e, next) {
                         if(next && next.$$route && next.$$route.css){
-                            if(!Array.isArray(next.$$route.css)){
+                            if(!angular.isArray(next.$$route.css)){
                                 next.$$route.css = [next.$$route.css];
                             }
                             angular.forEach(next.$$route.css, function(sheet){
@@ -29,7 +29,7 @@
                     });
                     $rootScope.$on('$routeChangeSuccess', function(e, current, previous) {
                         if (previous && previous.$$route && previous.$$route.css) {
-                            if (!Array.isArray(previous.$$route.css)) {
+                            if (!angular.isArray(previous.$$route.css)) {
                                 previous.$$route.css = [previous.$$route.css];
                             }
                             angular.forEach(previous.$$route.css, function (sheet) {
