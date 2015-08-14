@@ -105,29 +105,31 @@ This config adds a custom css property to the object that is used to setup each 
 ###Custom Head Directive:
 
 ```javascript
-app.directive('head', ['$rootScope','$compile',
+.directive('head', ['$rootScope','$compile',
     function($rootScope, $compile){
         return {
             restrict: 'E',
             link: function(scope, elem){
-                var html = '<link rel="stylesheet" ng-repeat="(routeCtrl, cssUrl) in routeStyles" ng-href="{{cssUrl}}" />';
+                var html = '<link rel="stylesheet" ng-repeat="(routeCtrl, cssUrl) in routeStyles" ng-href="{{cssUrl}}" >';
                 elem.append($compile(html)(scope));
                 scope.routeStyles = {};
-                $rootScope.$on('$routeChangeStart', function (e, next, current) {
-                    if(current && current.$$route && current.$$route.css){
-                        if(!Array.isArray(current.$$route.css)){
-                            current.$$route.css = [current.$$route.css];
-                        }
-                        angular.forEach(current.$$route.css, function(sheet){
-                            delete scope.routeStyles[sheet];
-                        });
-                    }
+                $rootScope.$on('$routeChangeStart', function (e, next) {
                     if(next && next.$$route && next.$$route.css){
-                        if(!Array.isArray(next.$$route.css)){
+                        if(!angular.isArray(next.$$route.css)){
                             next.$$route.css = [next.$$route.css];
                         }
                         angular.forEach(next.$$route.css, function(sheet){
                             scope.routeStyles[sheet] = sheet;
+                        });
+                    }
+                });
+                $rootScope.$on('$routeChangeSuccess', function(e, current, previous) {
+                    if (previous && previous.$$route && previous.$$route.css) {
+                        if (!angular.isArray(previous.$$route.css)) {
+                            previous.$$route.css = [previous.$$route.css];
+                        }
+                        angular.forEach(previous.$$route.css, function (sheet) {
+                            scope.routeStyles[sheet] = undefined;
                         });
                     }
                 });
@@ -141,5 +143,5 @@ This directive does the following things:
 
 * It compiles (using `$compile`) an html string that creates a set of <link /> tags for every item in the `scope.routeStyles` object using `ng-repeat` and `ng-href`.
 * It appends that compiled set of `<link />` elements to the `<head>` tag.
-* It then uses the `$rootScope` to listen for `'$routeChangeStart'` events. For every `'$routeChangeStart'` event, it grabs the "current" `$$route` object (the route that the user is about to leave) and removes its partial-specific css file(s) from the `<head>` tag. It also grabs the "next" `$$route` object (the route that the user is about to go to) and adds any of its partial-specific css file(s) to the `<head>` tag.
+* It then uses the `$rootScope` to listen for `'$routeChangeStart'` events. For every `'$routeChangeStart'` and `$routeChangeSuccess` event, it grabs the "current" `$$route` object (the route that the user is about to leave) and removes its partial-specific css file(s) from the `<head>` tag. It also grabs the "next" `$$route` object (the route that the user is about to go to) and adds any of its partial-specific css file(s) to the `<head>` tag.
 * And the `ng-repeat` part of the compiled `<link />` tag handles all of the adding and removing of the page-specific stylesheets based on what gets added to or removed from the `scope.routeStyles` object.
