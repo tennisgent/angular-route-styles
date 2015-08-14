@@ -15,24 +15,28 @@ did not provide a way to add specific CSS stylesheets that should be dynamically
 when the given route is hit.  This solves that problem by allowing you to do something like this:
 
 ```javascript
-app.config(['$routeProvider', function($routeProvider){
-    $routeProvider
-        .when('/some/route/1', {
-            templateUrl: 'partials/partial1.html', 
-            controller: 'Partial1Ctrl',
-            css: 'css/partial1.css'
-        })
-        .when('/some/route/2', {
-            templateUrl: 'partials/partial2.html',
-            controller: 'Partial2Ctrl'
-        })
-        .when('/some/route/3', {
-            templateUrl: 'partials/partial3.html',
-            controller: 'Partial3Ctrl',
-            css: ['css/partial3_1.css','css/partial3_2.css']
-        })
-        // more routes can be declared here
-}]);
+angular.module('myApp', ['ngRoute','routeStyles'])
+    .config(['$routeProvider', function($routeProvider){
+        $routeProvider
+            .when('/some/route/1', {
+                templateUrl: 'partials/partial1.html', 
+                controller: 'Partial1Ctrl',
+                // css files can be declared for each route
+                css: 'css/partial1.css'
+            })
+            .when('/some/route/2', {
+                // css files can also be omitted completely (if a route does not need them)
+                templateUrl: 'partials/partial2.html',
+                controller: 'Partial2Ctrl'
+            })
+            .when('/some/route/3', {
+                templateUrl: 'partials/partial3.html',
+                controller: 'Partial3Ctrl',
+                // css files can optionally be declared as an array
+                css: ['css/partial3_1.css','css/partial3_2.css']
+            });
+            // more routes can be declared here
+    }]);
 ```
 
 How to install:
