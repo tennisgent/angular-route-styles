@@ -19,7 +19,7 @@
 					$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 						// Remove old styles
 						if (fromState && fromState.css) {
-							if(!Array.isArray(fromState.css)){
+							if(!angular.isArray(fromState.css)){
 								fromState.css = [fromState.css];
 							}
 							angular.forEach(fromState.css, function(sheet){
@@ -29,7 +29,7 @@
 						if(fromState && fromState.views){
 							angular.forEach(fromState.views, function(view){
 								if(view.css){
-									if(!Array.isArray(view.css)){
+									if(!angular.isArray(view.css)){
 										view.css = [view.css];
 									}
 									angular.forEach(view.css, function(sheet){
@@ -43,7 +43,7 @@
 						if(toState && toState.views){
 							angular.forEach(toState.views, function(view){
 								if(view.css){
-									if(!Array.isArray(view.css)){
+									if(!angular.isArray(view.css)){
 										view.css = [view.css];
 									}
 									angular.forEach(view.css, function(sheet){
@@ -54,7 +54,7 @@
 							});
 						}
 						if (toState && toState.css) {
-							if(!Array.isArray(toState.css)){
+							if(!angular.isArray(toState.css)){
 								toState.css = [toState.css];
 							}
 							angular.forEach(toState.css, function(sheet){
