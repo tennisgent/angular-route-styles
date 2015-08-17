@@ -6,7 +6,7 @@
 (function(){
 'use strict';
 
-    angular.module('routeStyles', ['ngRoute']);
+    angular.module('routeStyles', ['ngRoute'])
     
         .directive('head', ['$rootScope','$compile','$interpolate',
             function($rootScope, $compile, $interpolate){
