@@ -7,7 +7,7 @@
 (function(){
 	'use strict';
 
-    angular.module('routeStyles', ['ui.router']);
+    angular.module('routeStyles', ['ui.router'])
 
 	    .directive('head', ['$rootScope','$compile','$interpolate',
 			function($rootScope, $compile, $interpolate){
