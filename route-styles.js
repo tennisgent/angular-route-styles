@@ -34,8 +34,14 @@
                                 if (!angular.isArray(previous.$$route.css)) {
                                     previous.$$route.css = [previous.$$route.css];
                                 }
+                                if (current.$$route && current.$$route.css && !angular.isArray(current.$$route.css)) {
+                                    current.$$route.css = [current.$$route.css];
+                                }
                                 angular.forEach(previous.$$route.css, function (sheet) {
-                                    scope.routeStyles[sheet] = undefined;
+                                    if (!current.$$route || !current.$$route.css || current.$$route.css.indexOf(sheet) === -1) {
+                                        // Only remove if not also required in the current page.
+                                        scope.routeStyles[sheet] = undefined;
+                                    }
                                 });
                             }
                         });
