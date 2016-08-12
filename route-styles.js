@@ -35,7 +35,7 @@
                                     previous.$$route.css = [previous.$$route.css];
                                 }
                                 angular.forEach(previous.$$route.css, function (sheet) {
-                                    scope.routeStyles[sheet] = undefined;
+                                    if (!current.$$route.css || current.$$route.css.indexOf(sheet)<0) scope.routeStyles[sheet] = undefined;
                                 });
                             }
                         });
