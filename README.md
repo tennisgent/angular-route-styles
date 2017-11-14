@@ -102,11 +102,11 @@ angular.module('myApp', ['ngRoute','routeStyles'])
 
 How does it work?
 -----------------
-###Route Setup:
+### Route Setup:
 
 This config adds a custom css property to the object that is used to setup each page's route. That object gets passed to each `'$routeChangeStart'` event as `.$$route`. So when listening to the `'$routeChangeStart'` event, we can grab the css property that we specified and append/remove those `<link />` tags as needed.
 
-###Custom Head Directive:
+### Custom Head Directive:
 
 ```javascript
 .directive('head', ['$rootScope','$compile',
